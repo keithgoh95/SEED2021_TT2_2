@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import PropTypes from "prop-types";
+// import {withRouter} from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import {
@@ -14,6 +16,7 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import Auth from 'src/views/auth/Auth';
+import api from 'src/api/base-api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,29 +57,11 @@ const LoginView = (props) => {
 
     e.preventDefault();   
      console.log(`username : ${username} , password : ${password}`);
-    fetch(url, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    })
-      .then((res) => {
-        return res.text();
-      })
-      .then((data) => {
-        Auth.login(() => {
-          props.history.push("/home");
-        });
-        console.log(`isAuthenticated state : ${Auth.isAuthenticated()}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+     api.postLogin();
+    //  console.log(api.postLogin());
+    //          Auth.login(() => {
+    //       history.push("/home");
+    //     });
   };
 
   return (
@@ -180,5 +165,11 @@ const LoginView = (props) => {
     </Page>
   );
 };
+
+// LoginView.propTypes = {
+//   match: PropTypes.object.isRequired,
+// };
+
+// export default withRouter(LoginView);
 
 export default LoginView;
