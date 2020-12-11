@@ -10,15 +10,16 @@ import Logout from './components/pages/Logout';
 const HomeView = () => {
   return (
     <>
-      <Router>
+      {/* <Router>
         <Navbar />
-        {/* <Switch>
+        <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/balance' component={Balance} />
             <Route path='/transfer' component={Transfer} />
             <Route path='/logout' component={Logout} />
-          </Switch> */}
-      </Router>
+          </Switch>
+      </Router> */}
+      <Home/>
     </>
   );
 };

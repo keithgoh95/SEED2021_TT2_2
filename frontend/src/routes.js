@@ -3,14 +3,14 @@ import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/DashboardLayout';
 import MainLayout from 'src/layouts/MainLayout';
 import AccountView from 'src/views/account/AccountView';
-import CustomerListView from 'src/views/customer/CustomerListView';
+import TransactionListView from 'src/views/transaction/TransactionListView';
 import DashboardView from 'src/views/reports/DashboardView';
 import LoginView from 'src/views/auth/LoginView';
 import NotFoundView from 'src/views/errors/NotFoundView';
 import ProductListView from 'src/views/product/ProductListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
-import HomeView from 'src/views/homepage/HomeView'
+import HomeView from 'src/layouts/HomeView'
 import TransferView from 'src/views/transfer/TransferView';
 import BalanceView from 'src/views/balance/BalanceView';
 import RewardsView from 'src/views/rewards/RewardsView';
@@ -20,11 +20,10 @@ const routes = [
     element: <DashboardLayout />,
     children: [
       { path: 'account', element: <AccountView /> },
-      { path: 'transaction', element: <CustomerListView /> },
+      { path: 'transaction', element: <TransactionListView /> },
       { path: 'dashboard', element: <DashboardView /> },
       { path: 'products', element: <ProductListView /> },
       { path: 'settings', element: <SettingsView /> },
-      { path: 'home', element: <HomeView /> },
       { path: 'transfer', element: <TransferView/>},
       { path: 'balance', element: <BalanceView /> },
       { path: 'Rewards', element: <RewardsView /> },
@@ -34,6 +33,10 @@ const routes = [
   },
   {
     path: '/',
+    element: <HomeView />,
+  },
+  {
+    path: '/login',
     element: <MainLayout />,
     children: [
       { path: 'login', element: <LoginView /> },

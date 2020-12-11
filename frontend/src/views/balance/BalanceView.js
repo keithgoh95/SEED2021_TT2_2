@@ -1,6 +1,13 @@
 import React from 'react';
-import { Box, Card, Container, makeStyles } from '@material-ui/core';
+import {
+  Box,
+  Card,
+  Container,
+  makeStyles,
+  Typography
+} from '@material-ui/core';
 import Page from 'src/components/Page';
+import api from 'src/api/base-api';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,12 +20,21 @@ const useStyles = makeStyles(theme => ({
 
 const BalanceView = () => {
   const classes = useStyles();
-  const testAmount = 42.0;
+  const custID = api.postLogin().custID;
+  const balAmount = api.getUserAccountDetails()[custID].availableBal;
+  const testAmount = 42.34;
   return (
     <Page className={classes.root} title="Transaction">
       <Container maxWidth={false}>
-        <Box mt={3} fontSize="30px" justifyContent="Center">
-          <Card>Balance: ${testAmount}</Card>
+        <Box mt={3} fontSize="30px" justifyContent="Center" alignItems="center">
+          <Typography color="textPrimary" variant="h1">
+            Balance
+          </Typography>
+          <br></br>
+
+          <Card align="center" fontSize="45">
+            $ {balAmount}
+          </Card>
         </Box>
       </Container>
     </Page>
