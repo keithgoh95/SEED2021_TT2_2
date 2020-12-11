@@ -187,13 +187,6 @@ const LatestOrders = ({ className, ...rest }) => {
                   <TableCell>
                     {order.amount}
                   </TableCell>
-                  {/* <TableCell>
-                    <Chip
-                      color="primary"
-                      label={order.status}
-                      size="small"
-                    />
-                  </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>

@@ -13,13 +13,13 @@ function Cards() {
                             src="images/img-dbs1.jpg"
                             text="Track your account balance and view your transaction history."
                             label='Account Balance'
-                            path='/services'
+                            path='/app/balance'
                         />
                         <CardItem 
                             src="images/img-dbs2.jpg"
                             text='Transfer of funds from on account to another.'
                             label='Transfer'
-                            path='/services'
+                            path='/app/transfer'
                         />   
                     </ul>
                     <ul className="cards__items">
@@ -27,19 +27,19 @@ function Cards() {
                             src='images/img-dbs3.jpg'
                             text='Bill payments and other payment services.'
                             label='Pay'
-                            path='/services'
+                            path='/app/transfer'
                         />
                         <CardItem
                             src='images/img-dbs4.jpg'
                             text='Credit and Debit cards Summary.'
                             label='Cards'
-                            path='/products'
+                            path='/app/products'
                         />
                         <CardItem
                             src='images/img-dbs5.jpg'
                             text='Investment products and services.'
                             label='Invest'
-                            path='/sign-in'
+                            path='/app/sign-in'
                         />  
                     </ul>
                 </div>

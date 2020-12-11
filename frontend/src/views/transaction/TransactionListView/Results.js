@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import axios from 'axios';
 
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+axios.defaults.headers.post['x-api-key'] = process.env.REACT_APP_TOKEN;
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';
+
 const columns = [
   { field: 'payeeID', headerName: 'Payee ID', width: 150 },
   { field: 'dateTime', headerName: 'Date', width: 250 },
@@ -10,12 +15,24 @@ const columns = [
   { field: 'expensesCat', headerName: 'Category', width: 200}
 ];
 
-
+const getUserTransactionDetails = async (custID) => {
+  const response = await axios.post('/transaction/view', { custID })
+    .catch((error) => {
+      console.log(`API postLogin failed with error message: ${error}`);
+      throw (error);
+    });
+  if (!response) {
+    throw ('Unable to get transcation details!');
+  }
+  return response.data;
+};
 
 export default function Results() {
   const [state, setState] = useState([])
 
   useEffect(()=>{
+
+
     const rows =[
       {
         id: 1,
