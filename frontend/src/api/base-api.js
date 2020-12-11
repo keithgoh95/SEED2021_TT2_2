@@ -538,4 +538,5 @@ export default {
   getUserAccountDetails,
   getUserTransactionDetails,
   updateUserAccountBalance,
+  addTransaction 
 };
