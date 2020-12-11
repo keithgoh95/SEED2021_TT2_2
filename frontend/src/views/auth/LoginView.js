@@ -57,11 +57,14 @@ const LoginView = (props) => {
 
     e.preventDefault();   
      console.log(`username : ${username} , password : ${password}`);
-     api.postLogin();
-    //  console.log(api.postLogin());
-    //          Auth.login(() => {
-    //       history.push("/home");
-    //     });
+     try {
+      await baseApi.postLogin(username, password);
+      Auth.login();
+      console.log("hello");
+    }
+    catch (e) {
+      console.log(e);
+    }
   };
 
   return (
