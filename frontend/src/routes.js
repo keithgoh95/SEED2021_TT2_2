@@ -27,7 +27,6 @@ const routes = [
       { path: 'home', element: <HomeView /> },
       { path: 'transfer', element: <TransferView/>},
       { path: 'balance', element: <BalanceView /> },
-      // { path: 'home', element: <HomeView /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },

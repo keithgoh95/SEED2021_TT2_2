@@ -1,15 +1,11 @@
 import React, {useState} from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import {
   Box,
   Button,
   Container,
   TextField,
   Typography,
-  makeStyles
 } from '@material-ui/core';
-
-
 
 export const Form = () => {
     const [payeeIDstate, changePayeeID] = useState('')
@@ -18,7 +14,7 @@ export const Form = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(payeeIDstate, categorystate, amount);
+        console.log(payeeIDstate, categorystate, amount, Date.now());
         changePayeeID('');
         changeCategory('');
         changeAmount(0);
