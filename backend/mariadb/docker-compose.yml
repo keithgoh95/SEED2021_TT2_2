@@ -1,0 +1,21 @@
+  version: '3.4'
+  services:
+    db:
+      image: mariadb
+      container_name: maria_db
+      restart: always
+      command: --init-file /init/01.sql
+      volumes: 
+      - ./init/01.sql:/init/01.sql 
+      environment:
+        MYSQL_ROOT_PASSWORD: default
+        MYSQL_DATABASE: rewards
+        MYSQL_USER: default
+        MYSQL_PASSWORD: default
+      ports:
+        - 3306:3306
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080
