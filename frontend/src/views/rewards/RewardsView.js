@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Card, Container, makeStyles } from '@material-ui/core';
 import Page from 'src/components/Page';
 
-const GETREWARD_API_URL = 'http://localhost:5000/GetPoint'
+const GETREWARD_API_URL = '/GetPoint'
 const TEST_ID = 'TEST'
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,7 +22,7 @@ const GetRewardScore = () => {
 		},
 		body: JSON.stringify({custID:TEST_ID})
 	});
-	//const content = response.json();
+	//const content = await response.json();
 	return 1;
 }
 const RewardsView = () => {
