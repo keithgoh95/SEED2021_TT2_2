@@ -1,5 +1,11 @@
 import React from 'react';
-import { Box, Card, Container, makeStyles } from '@material-ui/core';
+import {
+  Box,
+  Card,
+  Container,
+  makeStyles,
+  Typography
+} from '@material-ui/core';
 import Page from 'src/components/Page';
 import api from 'src/api/base-api';
 
@@ -21,7 +27,9 @@ const BalanceView = () => {
     <Page className={classes.root} title="Transaction">
       <Container maxWidth={false}>
         <Box mt={3} fontSize="30px" justifyContent="Center" alignItems="center">
-          <h1>Balance</h1>
+          <Typography color="textPrimary" variant="h1">
+            Balance
+          </Typography>
           <br></br>
 
           <Card align="center" fontSize="45">
