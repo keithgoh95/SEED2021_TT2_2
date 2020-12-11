@@ -110,7 +110,7 @@ const Sales = ({ className, ...rest }) => {
             Last 7 days
           </Button>
         )}
-        title="Latest Sales"
+        title="Transaction History"
       />
       <Divider />
       <CardContent>

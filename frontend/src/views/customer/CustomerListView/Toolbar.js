@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -35,18 +35,6 @@ const Toolbar = ({ className, ...rest }) => {
         display="flex"
         justifyContent="flex-end"
       >
-        <Button className={classes.importButton}>
-          Import
-        </Button>
-        <Button className={classes.exportButton}>
-          Export
-        </Button>
-        <Button
-          color="primary"
-          variant="contained"
-        >
-          Add customer
-        </Button>
       </Box>
       <Box mt={3}>
         <Card>

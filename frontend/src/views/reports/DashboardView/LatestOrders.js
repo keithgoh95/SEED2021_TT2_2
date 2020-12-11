@@ -23,66 +23,12 @@ import {
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 const data = [
-  {
-    id: uuid(),
-    ref: 'CDD1049',
-    amount: 30.5,
-    customer: {
-      name: 'Ekaterina Tankova'
-    },
-    createdAt: 1555016400000,
-    status: 'pending'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1048',
-    amount: 25.1,
-    customer: {
-      name: 'Cao Yu'
-    },
-    createdAt: 1555016400000,
-    status: 'delivered'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1047',
-    amount: 10.99,
-    customer: {
-      name: 'Alexa Richardson'
-    },
-    createdAt: 1554930000000,
-    status: 'refunded'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1046',
-    amount: 96.43,
-    customer: {
-      name: 'Anje Keizer'
-    },
-    createdAt: 1554757200000,
-    status: 'pending'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1045',
-    amount: 32.54,
-    customer: {
-      name: 'Clarke Gillebert'
-    },
-    createdAt: 1554670800000,
-    status: 'delivered'
-  },
-  {
-    id: uuid(),
-    ref: 'CDD1044',
-    amount: 16.76,
-    customer: {
-      name: 'Adam Denisov'
-    },
-    createdAt: 1554670800000,
-    status: 'delivered'
-  }
+  { id: 1, payeeID: 'STARBUCKS', date: '1-Jan-2020', amount: 10, eGift: 'No', expensesCat: 'Food' },
+  { id: 2, payeeID: 'APPLE', date: '2-Jan-2020', amount: 2300, eGift: 'No', expensesCat: 'Technology' },
+  { id: 3, payeeID: 'KOUFU', date: '3-Jan-2020', amount: 5, eGift: 'Yes', expensesCat: 'Food' },
+  { id: 4, payeeID: 'EZLINK', date: '4-Jan-2020', amount: 50, eGift: 'No', expensesCat: 'Transport' },
+  { id: 5, payeeID: 'SMU', date: '5-Jan-2020', amount: 5000, eGift: 'No', expensesCat: 'Education' },
+  { id: 6, payeeID: 'SUSHI EXPRESS', date: '6-Jan-2020', amount: 40, eGift: 'No', expensesCat: 'Food' },
 ];
 
 const useStyles = makeStyles(() => ({
@@ -101,18 +47,18 @@ const LatestOrders = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="Latest Orders" />
+      <CardHeader title="Recent Transaction" />
       <Divider />
       <PerfectScrollbar>
         <Box minWidth={800}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>
+                {/* <TableCell>
                   Order Ref
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
-                  Customer
+                  Payee ID
                 </TableCell>
                 <TableCell sortDirection="desc">
                   <Tooltip
@@ -128,7 +74,7 @@ const LatestOrders = ({ className, ...rest }) => {
                   </Tooltip>
                 </TableCell>
                 <TableCell>
-                  Status
+                  Amount
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -139,21 +85,21 @@ const LatestOrders = ({ className, ...rest }) => {
                   key={order.id}
                 >
                   <TableCell>
-                    {order.ref}
+                    {order.payeeID}
                   </TableCell>
                   <TableCell>
-                    {order.customer.name}
+                    {order.date}
                   </TableCell>
                   <TableCell>
-                    {moment(order.createdAt).format('DD/MM/YYYY')}
+                    {order.amount}
                   </TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <Chip
                       color="primary"
                       label={order.status}
                       size="small"
                     />
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>

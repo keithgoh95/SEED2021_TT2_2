@@ -1,182 +1,139 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import moment from 'moment';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import {
-  Avatar,
-  Box,
-  Card,
-  Checkbox,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TablePagination,
-  TableRow,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
-import getInitials from 'src/utils/getInitials';
+import React, { useEffect, useState } from 'react';
+import { DataGrid } from '@material-ui/data-grid';
+import axios from 'axios';
 
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  avatar: {
-    marginRight: theme.spacing(2)
-  }
-}));
+const columns = [
+  { field: 'payeeID', headerName: 'Payee ID', width: 200 },
+  { field: 'date', headerName: 'Date', width: 200 },
+  { field: 'amount', headerName: 'Amount', width: 200},
+  { field: 'eGift', headerName: 'eGift', width: 100},
+  { field: 'expensesCat', headerName: 'Category', width: 200}
+];
 
-const Results = ({ className, customers, ...rest }) => {
-  const classes = useStyles();
-  const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
-  const [limit, setLimit] = useState(10);
-  const [page, setPage] = useState(0);
 
-  const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
 
-    if (event.target.checked) {
-      newSelectedCustomerIds = customers.map((customer) => customer.id);
-    } else {
-      newSelectedCustomerIds = [];
+export default function Results() {
+  const [state, setState] = useState([])
+
+  useEffect(()=>{
+    const rows = [
+      { id: 1, payeeID: 'STARBUCKS', date: '1-Jan-2020', amount: 10, eGift: 'No', expensesCat: 'Food' },
+      { id: 2, payeeID: 'APPLE', date: '2-Jan-2020', amount: 2300, eGift: 'No', expensesCat: 'Technology' },
+      { id: 3, payeeID: 'KOUFU', date: '3-Jan-2020', amount: 5, eGift: 'Yes', expensesCat: 'Food' },
+      { id: 4, payeeID: 'EZLINK', date: '4-Jan-2020', amount: 50, eGift: 'No', expensesCat: 'Transport' },
+      { id: 5, payeeID: 'SMU', date: '5-Jan-2020', amount: 5000, eGift: 'No', expensesCat: 'Education' },
+      { id: 6, payeeID: 'SUSHI EXPRESS', date: '6-Jan-2020', amount: 40, eGift: 'No', expensesCat: 'Food' },
+    ];
+
+    // const rows = [
+    // {​​​​​​​​   eGift :true,
+    //     dateTime :"2020-04-28T07:47:47.737Z",
+    //     custID:21,
+    //     expensesCat:"Shopping",
+    //     amount:30.5,
+    //     message:"Thanks. :)",
+    //     payeeID:24
+    // }​​​​​​​​,
+    // {​​​​​​​​
+    //     eGift:false,
+    //     dateTime:"2020-04-02T15:42:50.829Z",
+    //     custID:21,
+    //     expensesCat:"Food",
+    //     amount:5.38,
+    //     message:"",
+    //     payeeID:14
+    // }​​​​​​​​,
+    // {​​​​​​​​
+    // "eGift":true,
+    // "dateTime":"2020-08-08T07:36:35.897Z",
+    // "custID":21,
+    // "expensesCat":"Entertainment",
+    // "amount":756.56,
+    // "message":"Thanks. :)",
+    // "payeeID":5
+    // }​​​​​​​​,
+    // {​​​​​​​​
+    // "eGift":false,
+    // "dateTime":"2020-05-08T22:45:32.274Z",
+    // "custID":21,
+    // "expensesCat":"Entertainment",
+    // "amount":437.38,
+    // "message":"",
+    // "payeeID":3
+    // }​​​​​​​​,
+    // {​​​​​​​​
+    // "eGift":true,
+    // "dateTime":"2019-12-09T13:16:39.388Z",
+    // "custID":21,
+    // "expensesCat":"Insurance",
+    // "amount":476.55,
+    // "message":"Thanks. :)",
+    // "payeeID":22
+    // }​​​​​​​​,
+    // {​​​​​​​​
+    // "eGift":false,
+    // "dateTime":"2020-04-20T18:34:30.993Z",
+    // "custID":17,
+    // "expensesCat":"Transport",
+    // "amount":100.62,
+    // "message":"",
+    // "payeeID":21
+    // }​​​​​​​​,
+    // {​​​​​​​​
+    // "eGift":false,
+    // "dateTime":"2019-12-10T05:17:47.503Z",
+    // "custID":1,
+    // "expensesCat":"Shopping",
+    // "amount":630.56,
+    // "message":"",
+    // "payeeID":21
+    // }​​​​​​​​,
+    // {​​​​​​​​
+    // "eGift":false,
+    // "dateTime":"2019-12-11T21:21:05.019Z",
+    // "custID":21,
+    // "expensesCat":"Transport",
+    // "amount":683.55,
+    // "message":"",
+    // "payeeID":24
+    // }​​​​​​​​,
+    // {​​​​​​​​
+    // "eGift":false,
+    // "dateTime":"2020-01-09T06:01:41.813Z",
+    // "custID":19,
+    // "expensesCat":"Insurance",
+    // "amount":474.74,
+    // "message":"",
+    // "payeeID":21
+    // }​​​​​​​​,
+    // {​​​​​​​​
+    // "eGift":true,
+    // "dateTime":"2020-05-10T19:08:19.426Z",
+    // "custID":3,
+    // "expensesCat":"Food",
+    // "amount":69.76,
+    // "message":"Thanks. :)",
+    // "payeeID":21
+    // }​​​​​​​​
+    // ]
+    
+    
+
+    // var url = 'https://u8fpqfk2d4.execute-api.ap-southeast-1.amazonaws.com/techtrek2020/transaction/view';
+    // fetch(url, {
+    // method: 'POST',
+    // headers:{
+    // 'X-Requested-With': 'XMLHttpRequest'}
+    // }).then(res => setState(res.json()))
+    if (state !== rows) {
+      setState(rows)
     }
-
-    setSelectedCustomerIds(newSelectedCustomerIds);
-  };
-
-  const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedCustomerIds.indexOf(id);
-    let newSelectedCustomerIds = [];
-
-    if (selectedIndex === -1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id);
-    } else if (selectedIndex === 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(1));
-    } else if (selectedIndex === selectedCustomerIds.length - 1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(
-        selectedCustomerIds.slice(0, selectedIndex),
-        selectedCustomerIds.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelectedCustomerIds(newSelectedCustomerIds);
-  };
-
-  const handleLimitChange = (event) => {
-    setLimit(event.target.value);
-  };
-
-  const handlePageChange = (event, newPage) => {
-    setPage(newPage);
-  };
+  },[]); 
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <PerfectScrollbar>
-        <Box minWidth={1050}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedCustomerIds.length === customers.length}
-                    color="primary"
-                    indeterminate={
-                      selectedCustomerIds.length > 0
-                      && selectedCustomerIds.length < customers.length
-                    }
-                    onChange={handleSelectAll}
-                  />
-                </TableCell>
-                <TableCell>
-                  Name
-                </TableCell>
-                <TableCell>
-                  Email
-                </TableCell>
-                <TableCell>
-                  Location
-                </TableCell>
-                <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Registration date
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {customers.slice(0, limit).map((customer) => (
-                <TableRow
-                  hover
-                  key={customer.id}
-                  selected={selectedCustomerIds.indexOf(customer.id) !== -1}
-                >
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      checked={selectedCustomerIds.indexOf(customer.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, customer.id)}
-                      value="true"
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Box
-                      alignItems="center"
-                      display="flex"
-                    >
-                      <Avatar
-                        className={classes.avatar}
-                        src={customer.avatarUrl}
-                      >
-                        {getInitials(customer.name)}
-                      </Avatar>
-                      <Typography
-                        color="textPrimary"
-                        variant="body1"
-                      >
-                        {customer.name}
-                      </Typography>
-                    </Box>
-                  </TableCell>
-                  <TableCell>
-                    {customer.email}
-                  </TableCell>
-                  <TableCell>
-                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
-                  </TableCell>
-                  <TableCell>
-                    {customer.phone}
-                  </TableCell>
-                  <TableCell>
-                    {moment(customer.createdAt).format('DD/MM/YYYY')}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Box>
-      </PerfectScrollbar>
-      <TablePagination
-        component="div"
-        count={customers.length}
-        onChangePage={handlePageChange}
-        onChangeRowsPerPage={handleLimitChange}
-        page={page}
-        rowsPerPage={limit}
-        rowsPerPageOptions={[5, 10, 25]}
-      />
-    </Card>
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid rows={state} columns={columns} pageSize={5} checkboxSelection />
+    </div>
   );
-};
+}
 
-Results.propTypes = {
-  className: PropTypes.string,
-  customers: PropTypes.array.isRequired
-};
-
-export default Results;
