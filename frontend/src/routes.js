@@ -11,6 +11,7 @@ import ProductListView from 'src/views/product/ProductListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
 import HomeView from 'src/views/homepage/HomeView'
+import TransferView from 'src/views/transfer/TransferView';
 
 const routes = [
   {
@@ -23,6 +24,7 @@ const routes = [
       { path: 'products', element: <ProductListView /> },
       { path: 'settings', element: <SettingsView /> },
       { path: 'home', element: <HomeView /> },
+      { path: 'transfer', element: <TransferView/>},
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },
