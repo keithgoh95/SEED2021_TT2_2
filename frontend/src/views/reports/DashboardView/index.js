@@ -54,7 +54,7 @@ const Dashboard = () => {
           >
             <TotalCustomers />
           </Grid>
-          <Grid
+          {/* <Grid
             item
             lg={3}
             sm={6}
@@ -62,7 +62,7 @@ const Dashboard = () => {
             xs={12}
           >
             <TasksProgress />
-          </Grid>
+          </Grid> */}
           <Grid
             item
             lg={3}

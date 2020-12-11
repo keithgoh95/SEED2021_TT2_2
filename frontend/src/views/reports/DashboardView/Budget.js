@@ -52,7 +52,7 @@ const Budget = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              BUDGET
+              TOTAL SPENDING
             </Typography>
             <Typography
               color="textPrimary"
