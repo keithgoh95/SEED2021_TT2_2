@@ -38,6 +38,11 @@ const items = [
     title: 'Dashboard'
   },
   {
+    href: '/app/transfer',
+    icon: UserPlusIcon,
+    title: 'Transfer Payment'
+  },
+  {
     href: '/app/transaction',
     icon: UsersIcon,
     title: 'Past Transaction'
