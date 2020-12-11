@@ -16,7 +16,7 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import Auth from 'src/views/auth/Auth';
-import api from 'src/api/base-api';
+import baseApi from '../../api/base-api.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +53,7 @@ const LoginView = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  function handleSubmit (e) {
+  async function handleSubmit (e) {
 
     e.preventDefault();   
      console.log(`username : ${username} , password : ${password}`);
