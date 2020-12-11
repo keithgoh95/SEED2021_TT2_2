@@ -13,7 +13,7 @@ import SettingsView from 'src/views/settings/SettingsView';
 import HomeView from 'src/views/homepage/HomeView'
 import TransferView from 'src/views/transfer/TransferView';
 import BalanceView from 'src/views/balance/BalanceView';
-
+import RewardsView from 'src/views/rewards/RewardsView';
 const routes = [
   {
     path: 'app',
@@ -27,6 +27,7 @@ const routes = [
       { path: 'home', element: <HomeView /> },
       { path: 'transfer', element: <TransferView/>},
       { path: 'balance', element: <BalanceView /> },
+      { path: 'Rewards', element: <RewardsView /> },
       // { path: 'home', element: <HomeView /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]

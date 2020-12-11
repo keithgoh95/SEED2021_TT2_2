@@ -48,6 +48,11 @@ const items = [
     title: 'Past Transaction'
   },
   {
+    href: '/app/rewards',
+    icon: BalanceIcon,
+    title: 'rewards'
+  },
+  {
     href: '/app/balance',
     icon: BalanceIcon,
     title: 'Balance'

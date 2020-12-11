@@ -1,0 +1,40 @@
+version: 0.9.2
+kind: BentoService
+metadata:
+  created_at: 2020-12-11 06:17:58.862073
+  service_name: RewardsProgramService
+  service_version: 20201211141757_05AEFD
+  module_name: RewardsProgramService
+  module_file: RewardsProgramService.py
+env:
+  pip_packages:
+  - bentoml==0.9.2
+  conda_env:
+    name: bentoml-default-conda-env
+    channels:
+    - conda-forge
+    - defaults
+    dependencies:
+    - pip
+  python_version: 3.7.6
+  docker_base_image: bentoml/model-server:0.9.2-py37
+apis:
+- name: GetPoint
+  docs: "BentoService inference API 'GetPoint', input: 'JsonInput', output: 'DefaultOutput'"
+  input_type: JsonInput
+  output_type: DefaultOutput
+  mb_max_batch_size: 2000
+  mb_max_latency: 10000
+  batch: false
+  output_config:
+    cors: '*'
+- name: addPoints
+  docs: "BentoService inference API 'addPoints', input: 'JsonInput', output: 'DefaultOutput'"
+  input_type: JsonInput
+  output_type: DefaultOutput
+  mb_max_batch_size: 2000
+  mb_max_latency: 10000
+  batch: false
+  output_config:
+    cors: '*'
+artifacts: []

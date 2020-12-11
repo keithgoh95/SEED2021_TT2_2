@@ -1,0 +1,2 @@
+include RewardsProgramService/bentoml.yml
+graft RewardsProgramService/artifacts
