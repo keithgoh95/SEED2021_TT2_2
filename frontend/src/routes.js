@@ -12,7 +12,6 @@ import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
 import HomeView from 'src/views/homepage/HomeView'
 import TransferView from 'src/views/transfer/TransferView';
-import HomeView from 'src/views/homepage/HomeView';
 import BalanceView from 'src/views/balance/BalanceView';
 
 const routes = [
